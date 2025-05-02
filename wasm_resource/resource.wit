@@ -1,0 +1,19 @@
+package local:kv-store;
+
+interface kvdb {
+  resource connection {
+    constructor();
+    get: func(key: string) -> option<string>;
+    set: func(key: string, value: string);
+    remove: func(key: string) -> option<string>;
+    clear: func();
+  }
+}
+
+world kv {
+  import kvdb;
+  import log: func(msg: string);
+  use kvdb.{connection};
+  export replace-value: func(f: borrow<connection> ,key: string, value: string) -> option<string>;
+  export consume: func(f: connection) ;
+}

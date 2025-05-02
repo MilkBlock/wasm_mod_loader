@@ -1,0 +1,16 @@
+# cargo-features = ["per-package-target"]
+
+[package]
+name = "wasm_simple"
+version = "0.1.0"
+edition = "2024"
+# forced-target = "wasm32-wasip2"
+
+[dependencies]
+wit-bindgen.workspace = true 
+
+[lib]
+path = "guest.rs"
+name = "guest_simple"
+crate-type = ["cdylib"]
+

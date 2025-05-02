@@ -1,0 +1,36 @@
+
+[package]
+name = "wasm_mod_loader"
+version = "0.1.0"
+edition = "2024"
+
+[workspace.dependencies]
+wit-bindgen = { version = "0.41.0", default-features = true }
+wit-component = "0.229.0"
+wasmtime = "32.0.0"
+wasmtime-wasi = { version = "32.0.0" , features = ["preview1"]}
+anyhow = "1.0.98"
+
+[dependencies]
+wit-bindgen.workspace = true
+wit-component.workspace = true
+wasmtime.workspace = true
+anyhow.workspace = true
+wasmtime-wasi.workspace = true
+
+
+
+[workspace]
+members = [
+  "wasm_simple",
+  "wasm_resource",
+]
+resolver = "2"
+
+# workspace/Cargo.toml
+
+[metadata]
+package_metadata = [
+    { package = "wasm_simple", target = "wasm32-wasip2" },
+    { package = "wasm_resource", target = "wasm32-wasip2" }
+]
